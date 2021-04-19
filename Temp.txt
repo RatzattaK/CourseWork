@@ -1,0 +1,21 @@
+Cloud9,US,100,CS:GO,773,10010411
+Evil Geniuses,US,100,Dota 2,860,24350698
+FaZe Clan,US,100,CS:GO,382,9344828
+Fnatic,UK,100,CS:GO,948,16014225
+G2 Esports,DE,100,League of Legends,461,7917582
+Ghost Gaming,CA,100,Fortnite,182,2441429
+London Spitfire,UK,33,Overwatch,13,1631136
+Luminosity Gaming,US,100,CS:GO,275,3571177
+Mousesports,DE,100,CS:GO,979,5477474
+NRG Esports,US,100,Fortnite,364,5164090
+Natus Vincere,UA,100,CS:GO,509,12307451
+New York Excelsior,US,37,Overwatch,18,1572618
+OG,EU,35,Dota 2,109,34388223
+Rogue,US,100,Rocket League,211,1981935
+San Francisco Shock,US,19,Overwatch,7,3105000
+Spacestation Gaming,US,97,Rocket League,210,2091436
+Team Dignitas,US,100,Heroes of the Storm,619,4070477
+Team Envy,US,100,CS:GO,377,6843269
+Team Liquid,NL,100,Dota 2,1914,36360675
+Virtus.pro,RU,100,Dota 2,522,15532174
+Vitality,FR,100,Rocket League,252,3794735
