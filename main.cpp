@@ -401,7 +401,6 @@ void FilterVector(vector <Esports> vec_esports)
     case 1:
         cout << "Country code: ";
         getline(cin, buff_str);
-        //while(1) - проверка ввода
         for (int i = 0; i < vec_esports.size(); i++)
             if (vec_esports[i].Country == buff_str)
                 filtered.push_back(vec_esports[i]);
@@ -415,7 +414,6 @@ void FilterVector(vector <Esports> vec_esports)
     case 3:
         cout << "Game name: ";
         getline(cin, buff_str);
-        //while(1) - проверка ввода
         for (int i = 0; i < vec_esports.size(); i++)
             if (vec_esports[i].Game == buff_str)
                 filtered.push_back(vec_esports[i]);
