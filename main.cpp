@@ -20,25 +20,19 @@ struct Esports //Структура таблицы
 void RemoveEmptyLines()
 {
     //Создание фалйа Temp без пустых строк
-    ifstream fin ("Table.txt");
+    ifstream fin("Table.txt");
     ofstream fout ("Temp.txt");
     string CurrentLine;
     while (getline(fin, CurrentLine))
-    {
         if (!CurrentLine.empty())
-        {
             fout << CurrentLine << '\n';
-        }
-    }
     fin.close();
     fout.close();
     //Перенести содержимое Temp в Table
     fin.open("Temp.txt");
     fout.open("Table.txt");
     while (getline(fin, CurrentLine))
-    {
         fout << CurrentLine << '\n';
-    }
     fin.close();
     fout.close();
 }
@@ -51,7 +45,6 @@ vector <Esports> ReadFromFile()
     string CurrentLine; //Текущая строка в файле
     ifstream fin; //Объект считывания из файла
     fin.open("Table.txt");
-
     while (getline(fin, CurrentLine)) //Пока в файле есть строка
     {
         int counter = 1; //Счётчик для записи в структуру
@@ -83,7 +76,6 @@ vector <Esports> ReadFromFile()
             counter++;
         }
         counter = 1; //Обнуляем счётчик для новой строки
-        //cout << "Line Finished" << endl;
         vec_esports.push_back(esports); //Записываем структуру в вектор структур
     }
     fin.close();
@@ -94,9 +86,7 @@ void WriteIntoFile(vector <Esports> &vec_esports)
 {
     ofstream fout ("Table.txt");
     for (int i = 0; i < vec_esports.size(); i++)
-    {
         fout << vec_esports[i].TeamName << ',' << vec_esports[i].Country << ',' << vec_esports[i].MemberCount << ',' << vec_esports[i].Game << ',' << vec_esports[i].TournamentsPlayedInTotal << ',' << vec_esports[i].MoneyEarned << '\n';
-    }
     fout.close();
 }
 
@@ -110,13 +100,9 @@ vector <Esports> AddTeam() //Функция считывания данных с
     {
         getline(cin, esports.TeamName);
         if (esports.TeamName.empty())
-        {
             cout << "Enter a valid team name: ";
-        }
         else if ((esports.TeamName.size() > 20))
-        {
             cout << "Team name must be less than 20 characters: ";
-        }
         else break;
     }
     cout << "Country: ";
@@ -124,13 +110,9 @@ vector <Esports> AddTeam() //Функция считывания данных с
     {
         getline(cin, esports.Country);
         if (esports.Country.empty())
-        {
             cout << "Enter a valid country code: ";
-        }
         else if ((esports.Country.size() > 2))
-        {
             cout << "Country code must contain only 2 letters: ";
-        }
         else break;
     }
     transform(esports.Country.begin(), esports.Country.end(), esports.Country.begin(), ::toupper); //transform применяет функцию toupper(преообразование строчных букв в прописные) и записывает значение в эту же строку
@@ -145,9 +127,7 @@ vector <Esports> AddTeam() //Функция считывания данных с
             cin.ignore(256, '\n'); //Удалить из потока ввода все символы
         }
         else if (esports.MemberCount > 100)
-        {
             cout << "Number of members must be less than 100: ";
-        }
         else break;
     }
     cin.get(); //Очистка буфера ввода
@@ -156,13 +136,9 @@ vector <Esports> AddTeam() //Функция считывания данных с
     {
         getline(cin, esports.Game);
         if (esports.Game.empty())
-        {
             cout << "Enter a valid game name: ";
-        }
         else if ((esports.Game.size() > 20))
-        {
             cout << "Choose an Esports game: ";
-        }
         else break;
     }
     cout << "Tournaments played in total: ";
@@ -176,9 +152,7 @@ vector <Esports> AddTeam() //Функция считывания данных с
             cin.ignore(256, '\n'); //Удалить из потока ввода все символы
         }
         else if ((esports.TournamentsPlayedInTotal > 2000))
-        {
             cout << "Number of played tournaments must be less than 2000: ";
-        }
         else break;
     }
     cout << "Total earnings: ";
@@ -202,7 +176,6 @@ vector <Esports> AddTeam() //Функция считывания данных с
     fout << '\n'; //Всегда добавлять символ новой строки в файл
     fout << esports.TeamName << ',' << esports.Country << ',' << esports.MemberCount << ',' << esports.Game << ',' << esports.TournamentsPlayedInTotal << ',' << esports.MoneyEarned; //Запись строчки в файл
     fout.close(); //Закрытие файла
-    RemoveEmptyLines();
     vec_esports = ReadFromFile();
     system("cls");
     cout << "Team has been added successfully." << endl;
@@ -218,13 +191,9 @@ void EditTeam(vector <Esports> &vec_esports)
     {
         getline(cin, TeamName);
         if (TeamName.empty())
-        {
             cout << "Enter a valid team name: ";
-        }
         else if ((TeamName.size() > 20))
-        {
             cout << "Team name must be less than 20 characters: ";
-        }
         else break;
     }
     system("cls");
@@ -260,13 +229,9 @@ void EditTeam(vector <Esports> &vec_esports)
                 {
                     getline(cin, buff);
                     if (buff.empty())
-                    {
                         cout << "Enter a valid team name: ";
-                    }
                     else if ((buff.size() > 20))
-                    {
                         cout << "Team name must be less than 20 characters: ";
-                    }
                     else break;
                 }
                 vec_esports[i].TeamName = buff;
@@ -277,13 +242,9 @@ void EditTeam(vector <Esports> &vec_esports)
                 {
                     getline(cin, buff);
                     if (buff.empty())
-                    {
                         cout << "Enter a valid country code: ";
-                    }
                     else if ((buff.size() > 2))
-                    {
                         cout << "Country code must contain only 2 letters: ";
-                    }
                     else break;
                 }
                 vec_esports[i].Country = buff;
@@ -301,9 +262,7 @@ void EditTeam(vector <Esports> &vec_esports)
                         cin.ignore(256, '\n');
                     }
                     else if (vec_esports[i].MemberCount > 100)
-                    {
                         cout << "Number of members must be less than 100: ";
-                    }
                     else break;
                 }
                 break;
@@ -313,13 +272,9 @@ void EditTeam(vector <Esports> &vec_esports)
                 {
                     getline(cin, buff);
                     if (buff.empty())
-                    {
                         cout << "Enter a valid game name: ";
-                    }
                     else if ((buff.size() > 20))
-                    {
                         cout << "Choose an Esports game: ";
-                    }
                     else break;
                 }
                 vec_esports[i].Game = buff;
@@ -336,9 +291,7 @@ void EditTeam(vector <Esports> &vec_esports)
                         cin.ignore(256, '\n');
                     }
                     else if (vec_esports[i].TournamentsPlayedInTotal > 2000)
-                    {
                         cout << "Number of played tournaments must be less than 2000: ";
-                    }
                     else break;
                 }
                 break;
@@ -354,9 +307,7 @@ void EditTeam(vector <Esports> &vec_esports)
                         cin.ignore(256, '\n');
                     }
                     else if (vec_esports[i].MoneyEarned > 99999999)
-                    {
                         cout << "The number must be less than 8 digits: ";
-                    }
                     else break;
                 }
                 break;
@@ -367,9 +318,7 @@ void EditTeam(vector <Esports> &vec_esports)
     }
     system("cls");
     if (!TeamFound)
-    {
         cout << "Team not found." << endl;
-    }
     else
     {
         WriteIntoFile(vec_esports);
@@ -387,13 +336,9 @@ void DeleteTeam(vector <Esports> &vec_esports)
     {
         getline(cin, TeamName);
         if (TeamName.empty())
-        {
             cout << "Enter a valid team name: ";
-        }
         else if ((TeamName.size() > 20))
-        {
             cout << "Team name must be less than 20 characters: ";
-        }
         else break;
     }
     for (int i = 0; i < vec_esports.size(); i++)
@@ -409,13 +354,9 @@ void DeleteTeam(vector <Esports> &vec_esports)
     }
     system("cls");
     if (!TeamFound)
-    {
         cout << "Team not found." << endl;
-    }
     else
-    {
         cout << "Team has been deleted successfully." << endl;
-    }
 }
 
 void PrintStructure(vector <Esports> vec) //Функция вывода информации в виде таблицы
@@ -423,12 +364,8 @@ void PrintStructure(vector <Esports> vec) //Функция вывода инфо
     for (int i = 0; i < vec.size(); i++) //Вывод всех данных в виде табицы
     {
         if (i == 0)
-        {
-            cout << left << setw(20) << "Team name" << "|" << setw(8) << "Country" << "|" << setw(13) << "Member count" << "|"
-            << setw(20) << "Game" << "|" << setw(17) << "Total tournaments" << "|" << setw(16) << "Total earnings $" << "\n";
-        }
-        cout << left << setw(20) << vec[i].TeamName << "|" << setw(8) << vec[i].Country << "|" << setw(13) << vec[i].MemberCount << "|"
-        << setw(20) << vec[i].Game << "|" << setw(17) << vec[i].TournamentsPlayedInTotal << "|" << setw(16) << vec[i].MoneyEarned << "\n";
+            cout << left << setw(20) << "Team name" << "|" << setw(8) << "Country" << "|" << setw(13) << "Member count" << "|" << setw(20) << "Game" << "|" << setw(17) << "Total tournaments" << "|" << setw(16) << "Total earnings $" << "\n";
+        cout << left << setw(20) << vec[i].TeamName << "|" << setw(8) << vec[i].Country << "|" << setw(13) << vec[i].MemberCount << "|" << setw(20) << vec[i].Game << "|" << setw(17) << vec[i].TournamentsPlayedInTotal << "|" << setw(16) << vec[i].MoneyEarned << "\n";
     }
 }
 
@@ -466,54 +403,34 @@ void FilterVector(vector <Esports> vec_esports)
         getline(cin, buff_str);
         //while(1) - проверка ввода
         for (int i = 0; i < vec_esports.size(); i++)
-        {
             if (vec_esports[i].Country == buff_str)
-            {
                 filtered.push_back(vec_esports[i]);
-            }
-        }
         break;
     case 2:
         cin >> buff_int;
         for (int i = 0; i < vec_esports.size(); i++)
-        {
             if (vec_esports[i].MemberCount == buff_int)
-            {
                 filtered.push_back(vec_esports[i]);
-            }
-        }
         break;
     case 3:
         cout << "Game name: ";
         getline(cin, buff_str);
         //while(1) - проверка ввода
         for (int i = 0; i < vec_esports.size(); i++)
-        {
             if (vec_esports[i].Game == buff_str)
-            {
                 filtered.push_back(vec_esports[i]);
-            }
-        }
         break;
     case 4:
         cin >> buff_int;
         for (int i = 0; i < vec_esports.size(); i++)
-        {
             if (vec_esports[i].TournamentsPlayedInTotal == buff_int)
-            {
                 filtered.push_back(vec_esports[i]);
-            }
-        }
         break;
     case 5:
         cin >> buff_int;
         for (int i = 0; i < vec_esports.size(); i++)
-        {
             if (vec_esports[i].MoneyEarned == buff_int)
-            {
                 filtered.push_back(vec_esports[i]);
-            }
-        }
         break;
     default:
         system("cls");
